@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 class SettingButton: UIButton {
-
+    
     @IBInspectable var roundButton: Bool = false {
         didSet {
             if roundButton {
@@ -18,11 +18,19 @@ class SettingButton: UIButton {
             }
         }
     }
-    
-    override func prepareForInterfaceBuilder() {
-        if roundButton {
-            layer.cornerRadius = frame.height / 2
-        }
+    @IBInspectable var borderWidth: CGFloat {
+        set { layer.borderWidth = newValue }
+        get { return layer.borderWidth }
     }
-
+        @IBInspectable var borderColor: UIColor? {
+        set { layer.borderColor = newValue?.cgColor  }
+        get { return layer.borderColor as? UIColor}
+        }
+        
+        override func prepareForInterfaceBuilder() {
+        if roundButton {
+        layer.cornerRadius = frame.height / 2
+        }
+        }
+        
 }
